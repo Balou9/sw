@@ -3,7 +3,8 @@ const port = Number(process.argv[2])
 const type = process.argv[3]
 const city = process.argv[4]
 const server = http.createServer()
-const key = 'c4a5fb1794bd408687f122847190503'
+const key = '*******************************'
+
 const baseUrl = 'http://api.apixu.com/v1/'
 const {
   howIsTheWeather,
@@ -21,12 +22,13 @@ function handler (req, res) {
   if (!res) return panic(res, 400)
   res.writeHead(200, { 'content-type': 'application/json'})
   let url = getUrl(baseUrl, type, city, key)
+  
   howIsTheWeather(url, (err, data) => {
     if (err) console.error(err)
-    const payload = data
+    let payload = data
+    res.end(payload)
+    console.log(payload)
   })
-  res.end(payload)
-  console.log(payload)
 }
 
 server.on('request', handler)
