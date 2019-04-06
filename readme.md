@@ -1,3 +1,3 @@
 # sw
 
-simple weather server (still under construction)
+simple weather server (git)

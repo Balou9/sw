@@ -1,8 +1,14 @@
 const http = require('http')
 const port = Number(process.argv[2])
-const type = process.argv[2]
-const city = process.argv[3]
+const type = process.argv[3]
+const city = process.argv[4]
 const server = http.createServer()
+const key = 'c4a5fb1794bd408687f122847190503'
+const baseUrl = 'http://api.apixu.com/v1/'
+const {
+  howIsTheWeather,
+  getUrl
+} = require('./weather_client.js')
 
 function panic (res, code) {
   var payload = JSON.stringify({ error: code })
@@ -14,7 +20,11 @@ function panic (res, code) {
 function handler (req, res) {
   if (!res) return panic(res, 400)
   res.writeHead(200, { 'content-type': 'application/json'})
-  var payload(JSON.stringify({fraud: 'Weather is true'}))
+  let url = getUrl(baseUrl, type, city, key)
+  howIsTheWeather(url, (err, data) => {
+    if (err) console.error(err)
+    const payload = data
+  })
   res.end(payload)
   console.log(payload)
 }
