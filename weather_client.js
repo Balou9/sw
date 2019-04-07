@@ -1,6 +1,5 @@
 const http = require('http')
 
-// hashing key?
 // const types = {
 //   current: 'current.json',
 //   forecast: 'forecast.json',
