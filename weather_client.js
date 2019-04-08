@@ -32,7 +32,6 @@ var url = getUrl(baseUrl, type, city, key, date)
 
 http.get(url, (res) => {
   if (!res) return panic(res, 400)
-  if (res.statusCode !== 200 || res.statusCode !== 400 ) console.log(res.statusMessage)
   let raw = ''
   res.on('data', (chunk) => { raw += chunk })
   res.on('end', () => {
